@@ -19,7 +19,6 @@
         }
         .register-container {
             display: flex;
-            /* max-width: 300vh; */
             width: 140vh;
             height: 80vh;
             background-color: #fff;
@@ -68,16 +67,25 @@
         .register-right h2 {
             font-size: 28px;
             margin-bottom: 30px;
+            font-weight: bold;
         }
         .register-right .form-group {
             width: 100%;
             margin-bottom: 15px;
+            position: relative;
         }
         .register-right .form-group input {
             width: 50vh;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 10px;
+        }
+        .register-right .form-group i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
         }
         .register-right .btn {
             background-color: black;
@@ -104,6 +112,13 @@
         </div>
         <div class="register-right">
             <h2>CREATE ACCOUNT</h2>
+            <?php if (session()->getFlashdata('errors')): ?>
+                <div class="alert alert-danger">
+                    <?php foreach (session()->getFlashdata('errors') as $error): ?>
+                        <p><?= esc($error) ?></p>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
             <form method="post" action="<?= base_url(); ?>/register/process">
                 <?= csrf_field(); ?>
                 <div class="form-group">
@@ -117,11 +132,31 @@
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="PASSWORD" name="password" required>
+                    <i class="fa fa-eye" id="togglePassword"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="CONFIRM PASSWORD" name="confirmPassword" required>
+                    <i class="fa fa-eye" id="toggleConfirmPassword"></i>
                 </div>
                 <button type="submit" class="btn">SIGN UP</button>
             </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const password = document.querySelector('input[name="password"]');
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
+            const confirmPassword = document.querySelector('input[name="confirmPassword"]');
+            const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPassword.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </body>
 </html>

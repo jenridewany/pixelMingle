@@ -32,9 +32,5 @@ class Home extends BaseController
     {
         return view('private-session');
     }
-    public function register(): string
-    {
-        return view('register');
-    }
 }
 
