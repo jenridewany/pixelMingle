@@ -17,7 +17,7 @@ $routes->get('/register', 'Register::index');
 $routes->post('/register/process', 'Register::process');
 
 $routes->get('/login', 'Login::index');
-$routes->post('/login/process', 'Login::process');
+$routes->post('/login/authenticate', 'Login::authenticate');
 
 
 
