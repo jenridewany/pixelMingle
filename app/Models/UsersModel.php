@@ -13,15 +13,11 @@ class UsersModel extends Model
 
     // Optional: validation rules for the model data
     protected $validationRules = [
-        'username' => 'required',
         'password' => 'required'
     ];
 
     // Optional: validation error messages
     protected $validationMessages = [
-        'username' => [
-            'required' => 'Username is required.'
-        ],
         'password' => [
             'required' => 'Password is required.'
         ]

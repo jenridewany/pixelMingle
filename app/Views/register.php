@@ -119,7 +119,7 @@
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
-            <form method="post" action="<?= base_url(); ?>/register/process">
+            <form method="post" action="<?= base_url(); ?>register/process">
                 <?= csrf_field(); ?>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="NAME" name="name" required>

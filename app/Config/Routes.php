@@ -19,5 +19,4 @@ $routes->post('/register/process', 'Register::process');
 $routes->get('/login', 'Login::index');
 $routes->post('/login/authenticate', 'Login::authenticate');
 
-
-
+$routes->get('/dashboard', 'Dashboard');
